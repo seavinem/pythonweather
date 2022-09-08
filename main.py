@@ -21,14 +21,14 @@ keybord1.row('погода')
 def send_start(message):
     bot.send_message(message.chat.id, 'привет, ты запустил меня', reply_markup = keybord1)
 
-weath = 0
+weat = 0
 
 data = {1: 'января', 2: 'февраля', 3: 'марта', 4: 'апреля', 5: 'мая', 6: 'июня', 7: 'июля', 8: 'августа', 9: 'сентября', 10: 'октября', 11: 'ноября', 12: 'декабря'}
 week = {1: 'понедельник', 2: 'вторник', 3: 'среда', 4: 'четверг', 5: 'пятница', 6: 'суббота', 7: 'воскресенье'}
 
 @bot.message_handler(content_types=['text'])
 def send_text(message):
-    global weath
+    global weat
     if message.text.lower() == 'привет':
         bot.send_message(message.chat.id, 'и тебе привет!')
     elif message.text.lower() == 'пока':
@@ -41,8 +41,8 @@ def send_text(message):
             bot.send_message(message.chat.id, f'{now.hour}:0{now.minute}')
     elif message.text.lower() == 'погода':
         bot.send_message(message.chat.id, 'введите ваш город')
-        weath = 1
-    elif weath == 1:
+        weat = 1
+    elif weat == 1:
         town = message.text.title()
         manager = owm.weather_manager()
         observation = manager.weather_at_place(town)
@@ -60,7 +60,7 @@ def send_text(message):
         else:
             stats = stats + f"за последний час выпало осадков: {weather.rain['1h']} мм"
         bot.send_message(message.chat.id, f'{stats}')
-        weath = 0
+        weat = 0
 
 
 

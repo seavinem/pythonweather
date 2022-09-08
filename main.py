@@ -54,10 +54,11 @@ def send_text(message):
                  f'минимальная температура: {weather.temperature("celsius").get("temp_min")} градусов\n'
                  f'сейчас ощущается: {weather.temperature("celsius").get("feels_like")} градусов\n'
                  f'скорость ветра: {weather.wind()["speed"]} м/с\n')
-        if weather.rain != {}:
-            stats += f'за последний час выпало осадков: {weather.rain["1h"]} мм'
+        if len(weather.rain) == 0:
+            stats = stats + 'за последний час не было осадков'
+
         else:
-            stats += 'за последний час не было осадков'
+            stats = stats + f"за последний час выпало осадков: {weather.rain['1h']} мм"
         bot.send_message(message.chat.id, f'{stats}')
         weath = 0
 

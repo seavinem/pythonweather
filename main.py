@@ -10,7 +10,7 @@ language['language'] = 'ru'
 owm = OWM("5908d8edff957ce9f86b00f7f721b0ba", language)
 
 
-now = datetime.now()
+
 
 keybord1 = telebot.types.ReplyKeyboardMarkup(True)
 keybord1.row('привет', 'пока', 'дата')
@@ -29,6 +29,7 @@ week = {1: 'понедельник', 2: 'вторник', 3: 'среда', 4: '�
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     global weat
+    now = datetime.now()
     if message.text.lower() == 'привет':
         bot.send_message(message.chat.id, 'и тебе привет!')
     elif message.text.lower() == 'пока':

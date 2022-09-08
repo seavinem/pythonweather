@@ -36,9 +36,9 @@ def send_text(message):
     elif any([message.text.lower() == 'дата', message.text.lower() == 'время', message.text.lower() == 'date', message.text.lower() == 'time']):
         bot.send_message(message.chat.id, f'сегодня {week[now.weekday()+1]} {now.day} {data[now.month]} {now.year} года')
         if now.minute >= 10:
-            bot.send_message(message.chat.id, f'456{now.hour}:{now.minute} время{now.time()}')
+            bot.send_message(message.chat.id, f'{now.hour+3}:{now.minute}')
         else:
-            bot.send_message(message.chat.id, f'123{now.hour}:0{now.minute}')
+            bot.send_message(message.chat.id, f'{now.hour+3}:0{now.minute}')
     elif message.text.lower() == 'погода':
         bot.send_message(message.chat.id, 'введите ваш город')
         weat = 1

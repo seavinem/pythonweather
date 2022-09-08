@@ -29,17 +29,16 @@ week = {1: 'понедельник', 2: 'вторник', 3: 'среда', 4: '�
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     global weat
-    now = datetime.now()
     if message.text.lower() == 'привет':
         bot.send_message(message.chat.id, 'и тебе привет!')
     elif message.text.lower() == 'пока':
         bot.send_message(message.chat.id, 'до встречи!')
     elif any([message.text.lower() == 'дата', message.text.lower() == 'время', message.text.lower() == 'date', message.text.lower() == 'time']):
-        bot.send_message(message.chat.id, f'сегодня {week[now.weekday()+1]} {now.day} {data[now.month]} {now.year} года')
-        if now.minute >= 10:
-            bot.send_message(message.chat.id, f'{now.hour+3}:{now.minute}')
+        bot.send_message(message.chat.id, f'сегодня {week[datetime.now().weekday()+1]} {datetime.now().day} {data[datetime.now().month]} {datetime.now().year} года')
+        if datetime.now().minute >= 10:
+            bot.send_message(message.chat.id, f'{datetime.now().hour+3}:{datetime.now().minute}')
         else:
-            bot.send_message(message.chat.id, f'{now.hour+3}:0{now.minute}')
+            bot.send_message(message.chat.id, f'{datetime.now().hour+3}:0{datetime.now().minute}')
     elif message.text.lower() == 'погода':
         bot.send_message(message.chat.id, 'введите ваш город')
         weat = 1

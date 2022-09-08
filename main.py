@@ -34,7 +34,7 @@ def send_text(message):
     elif message.text.lower() == 'пока':
         bot.send_message(message.chat.id, 'до встречи!')
     elif any([message.text.lower() == 'дата', message.text.lower() == 'время', message.text.lower() == 'date', message.text.lower() == 'time']):
-        bot.send_message(message.chat.id, f'сегодня {week[now.weekday()]} {now.day} {data[now.month]} {now.year} года')
+        bot.send_message(message.chat.id, f'сегодня {week[now.weekday()+1]} {now.day} {data[now.month]} {now.year} года')
         if now.minute >= 10:
             bot.send_message(message.chat.id, f'{now.hour}:{now.minute}')
         else:
